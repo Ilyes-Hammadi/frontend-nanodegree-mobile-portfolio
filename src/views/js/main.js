@@ -504,18 +504,23 @@ function updatePositions() {
   // Get all the items
   var items = document.querySelectorAll('.mover');
   
-  // Get the one time the basicLeft value 
-  var basicLeft = items[0].basicLeft;
-
-  // Calculate the left and scroll
-  var left = basicLeft + 100 * phase + 'px';
+  // Calculate the scroll
   var scrollTop = (document.body.scrollTop / 1250);
   
   // Null variable that will be used in the for loop
   var phase = null;
+  var left = null;
+  var basicLeft = null;
   
   items.forEach(function(elem, index, arr) {
+    // Calculate the new phase
     phase = Math.sin(scrollTop + (index % 5));
+    
+    // Calculate the new basicLeft
+    basicLeft = elem.basicLeft;
+    
+    // Calculate the new left
+    left = basicLeft + 100 * phase + 'px';
     elem.style.left = left;
   });
 
