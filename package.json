@@ -26,7 +26,6 @@
     "grunt-contrib-imagemin": "^1.0.1",
     "grunt-contrib-uglify": "^2.3.0",
     "grunt-pagespeed": "^2.0.1",
-    "grunt-processhtml": "^0.4.1",
     "install": "^0.8.8",
     "load-grunt-tasks": "^3.5.2",
     "ngrok": "^2.2.6"

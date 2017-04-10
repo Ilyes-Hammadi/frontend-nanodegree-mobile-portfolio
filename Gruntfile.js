@@ -14,8 +14,9 @@ module.exports = function (grunt) {
 				options: {
 					banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 				},
+				cwd: 'src/',
 				expand: true,
-				src: ['src/css/*.css', 'src/css/!*.min.css'],
+				src: ['css/*.css', 'css/!*.min.css', 'views/css/*.css'],
 				dest: 'dist/',
 				ext: '.css'
 			}
@@ -25,26 +26,12 @@ module.exports = function (grunt) {
 				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 			},
 			build: {
-				src: 'src/js/perfmatters.js',
-				dest: 'dist/js/perfmatters.js'
-			}
-		},
-		processhtml: {
-			dist: {
-				options: {
-					process: true,
-					data: {
-						title: 'My app',
-						message: 'This is production distribution'
-					}
-				},
-				files: {
-					'dist/index.min.html': ['src/index.html'],
-					'dist/project-2048.min.html': ['src/project-2048.html'],
-					'dist/project-mobile.min.html': ['src/project-mobile.html'],
-					'dist/project-webperf.min.html': ['src/project-webperf.html'],
-					'dist/views/pizza.html': ['src/views/pizza.html']
-				}
+				files: [{
+					expand: true,
+					cwd: 'src/',
+					src: ['js/*.js', 'views/js/*.js'],
+					dest: 'dist/'
+				}]
 			}
 		},
 		htmlmin: {
@@ -53,39 +40,27 @@ module.exports = function (grunt) {
 					removeComments: true,
 					collapseWhitespace: true
 				},
-				files: {
-					'dist/index.html': 'dist/index.min.html',
-					'dist/project-2048.html': 'dist/project-2048.min.html',
-					'dist/project-mobile.html': 'dist/project-mobile.min.html',
-					'dist/project-webperf.html': 'dist/project-webperf.min.html',
-					'dist/views/pizza.html': 'dist/views/pizza.html'
-				}
+				files: [{
+					cwd: 'src',
+					expand: true,
+					src: ['*.html', 'views/**/*.html'],
+					dest: 'dist'
+				}]
 			}
 		},
-		imagemin: { // Task
-			static: { // Target
-				options: { // Target options
+		imagemin: {
+			static: {
+				options: {
 					optimizationLevel: 7,
 					svgoPlugins: [{
 						removeViewBox: false
-					}],
-					// use: [mozjpeg()]
+					}]
 				},
-				files: { // Dictionary of files
-					'dist/img/2048.png': 'src/img/2048.png', // 'destination': 'source'
-					'dist/img/cam_be_like.jpg': 'src/img/cam_be_like.jpg',
-					'dist/img/mobilewebdev.jpg': 'src/img/mobilewebdev.jpg',
-					'dist/img/profilepic.jpg': 'src/img/profilepic.jpg',
-					'dist/views/images/pizza.png': 'src/views/images/pizza.png',
-					'dist/views/images/pizzeria.jpg': 'src/views/images/pizzeria.jpg'
-				}
-			},
-			dynamic: { // Another target
 				files: [{
-					expand: true, // Enable dynamic expansion
-					cwd: 'img/', // Src matches are relative to this path
-					src: ['**/*.{png,jpg,gif}'], // Actual patterns to match
-					dest: 'dist/img/' // Destination path prefix
+					expand: true,
+					cwd: 'src/',
+					src: ['img/*.{png,jpg,gif}', 'views/images/*.{png,jpg,gif}'],
+					dest: 'dist/'
 				}]
 			}
 		},
@@ -105,18 +80,8 @@ module.exports = function (grunt) {
 					strategy: "mobile"
 				}
 			}
-		},
-		clean: ['dist*//*.min.*']
+		}
 	});
-
-	grunt.loadNpmTasks('grunt-contrib-htmlmin');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
-	grunt.loadNpmTasks('grunt-processhtml');
-	grunt.loadNpmTasks('grunt-contrib-clean');
-	grunt.loadNpmTasks('grunt-contrib-imagemin');
-
-
 
 	// Register customer task for ngrok
 	grunt.registerTask('psi-ngrok', 'Run pagespeed with ngrok', function () {
@@ -134,7 +99,5 @@ module.exports = function (grunt) {
 		});
 	});
 
-
-	grunt.registerTask('default', ['cssmin', 'uglify', 'processhtml', 'htmlmin', 'imagemin', 'psi-ngrok', 'clean']);
-	grunt.registerTask('build', ['cssmin', 'uglify', 'htmlmin', 'processhtml', 'imagemin', 'psi-ngrok']);
+	grunt.registerTask('default', ['cssmin', 'uglify', 'htmlmin', 'imagemin']);
 };
