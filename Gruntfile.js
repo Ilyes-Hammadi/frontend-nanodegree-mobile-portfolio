@@ -15,7 +15,7 @@ module.exports = function (grunt) {
 					banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 				},
 				expand: true,
-				src: ['css/*.css', 'css/!*.min.css'],
+				src: ['src/css/*.css', 'src/css/!*.min.css'],
 				dest: 'dist/',
 				ext: '.css'
 			}
@@ -25,7 +25,7 @@ module.exports = function (grunt) {
 				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 			},
 			build: {
-				src: 'js/perfmatters.js',
+				src: 'src/js/perfmatters.js',
 				dest: 'dist/js/perfmatters.js'
 			}
 		},
@@ -39,11 +39,11 @@ module.exports = function (grunt) {
 					}
 				},
 				files: {
-					'dist/index.min.html': ['index.html'],
-					'dist/project-2048.min.html': ['project-2048.html'],
-					'dist/project-mobile.min.html': ['project-mobile.html'],
-					'dist/project-webperf.min.html': ['project-webperf.html'],
-					'dist/views/pizza.html': ['views/pizza.html']
+					'dist/index.min.html': ['src/index.html'],
+					'dist/project-2048.min.html': ['src/project-2048.html'],
+					'dist/project-mobile.min.html': ['src/project-mobile.html'],
+					'dist/project-webperf.min.html': ['src/project-webperf.html'],
+					'dist/views/pizza.html': ['src/views/pizza.html']
 				}
 			}
 		},
@@ -72,12 +72,12 @@ module.exports = function (grunt) {
 					// use: [mozjpeg()]
 				},
 				files: { // Dictionary of files
-					'dist/img/2048.png': 'img/2048.png', // 'destination': 'source'
-					'dist/img/cam_be_like.jpg': 'img/cam_be_like.jpg',
-					'dist/img/mobilewebdev.jpg': 'img/mobilewebdev.jpg',
-					'dist/img/profilepic.jpg': 'img/profilepic.jpg',
-					'dist/views/images/pizza.png': 'views/images/pizza.png',
-					'dist/views/images/pizzeria.jpg': 'views/images/pizzeria.jpg'
+					'dist/img/2048.png': 'src/img/2048.png', // 'destination': 'source'
+					'dist/img/cam_be_like.jpg': 'src/img/cam_be_like.jpg',
+					'dist/img/mobilewebdev.jpg': 'src/img/mobilewebdev.jpg',
+					'dist/img/profilepic.jpg': 'src/img/profilepic.jpg',
+					'dist/views/images/pizza.png': 'src/views/images/pizza.png',
+					'dist/views/images/pizzeria.jpg': 'src/views/images/pizzeria.jpg'
 				}
 			},
 			dynamic: { // Another target
