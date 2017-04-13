@@ -501,11 +501,11 @@ function logAverageFrame(times) { // times is the array of User Timing measureme
 }
 
 // Debounce the scroll event.
-var lastScrollY = 0;
+var lastScrollTop = 0;
 var animating = false;
 
 function onScroll() {
-	lastScrollY = window.scrollY;
+	lastScrollTop = document.body.scrollTop;
 	requestFrame();
 }
 
@@ -529,7 +529,7 @@ function updatePositions() {
 	var items = document.getElementsByClassName('mover');
 
 	// Calculate the scroll
-	var scrollTop = (lastScrollY / 1250);
+	var scrollTop = (lastScrollTop / 1250);
 
 	// Null variable that will be used in the for loop
 	var phase, left, basicLeft;
@@ -562,22 +562,21 @@ window.addEventListener('scroll', onScroll, false);
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function () {
 	var s = 256;
-	var cols = screen.availWidth / s;
-	var rows = screen.availHeight / s; // Generate pizzas based on available screen dimensions
-	
+  
+  // Generate pizzas based on available screen width and height
+	var cols = screen.width / 300;
+	var rows = screen.height / 300; 
   var pizzaCount = Math.ceil(cols * rows);
-	
+  
   var movingPizzas = document.getElementById("movingPizzas1");
 	
   for (var i = 0; i < pizzaCount; i++) {
 		var elem = document.createElement('img');
 		elem.className = 'mover';
 		elem.src = "images/pizza_small.png";
-		elem.style.transform = 'translate3d(0, 0, 0) translate(0px)'; // translate3d ( )
-		elem.height = "100";
-		elem.width = "73";
-		elem.style.height = elem.height + 'px';
-		elem.style.width = elem.width + 'px';
+		elem.style.height = '100px';
+		elem.style.width = '73.33px';
+    elem.style.transform = 'translate3d(0, 0, 0) translate(0px)';
 		elem.basicLeft = (i % cols) * s;
 		elem.style.left = elem.basicLeft + 'px';
 		elem.style.top = (Math.floor(i / cols) * s) + 'px';

@@ -171,3 +171,4 @@ imagemin: {
 - Reduced the size of the animation pizza to small `pizza_small.png`
 - Added translate3d property to moving pizza elements to force 3d acceleration
 - Replaced `querySelector*` with getElementBy*``
+- Reduce the number of animated pizza by generating based on available screen dimensions
