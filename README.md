@@ -5,7 +5,6 @@ Before runnig the project you need to install all the dependencies required.
 ```shell
 $ cd /path/to/your-project-folder
 $ npm install
-$ npm install -g http-server
 ```
 
 Build the dist folder
@@ -16,9 +15,10 @@ $ npm run build
 Now to start the local server tap this in your terminal.
 
 ```shell
-$ npm start
+$ cd dist
+$ python -m SimpleHTTPServer
 ```
- This will fire a local server at `localhost:8000`. If you want to change the default port, run `http-server dist/ -p PORT`
+This will fire a local server at `localhost:8000`.
 
 ### Run the PageSpeed test
 To run the PageSpeed test run the following command
