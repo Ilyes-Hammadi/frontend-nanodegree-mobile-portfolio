@@ -60,7 +60,7 @@ Size tap targets appropriately             | 13.34
 Use legible font sizes                     | 24.56
 ```
 
-### Tasks done to improve page speed
+### Tasks done to improve page speed to 90 PSI in `index.html`
 1. Appropriate media queries for link tags
 ```html
 <link href="css/print.css" rel="stylesheet" media="print">
@@ -157,3 +157,17 @@ imagemin: {
 },
 // ...
 ```
+
+### Tasks done to improve frame speed to 60 FPS in `main.js`
+- De-nested the following functions declaration:
+    * changeSliderLabel
+    * changePizzaSizes
+- Refactor the following functions:
+    * determineDx
+    * sizeSwitcher
+- Debounced onScroll Animation
+- Add `requestAnimationFrame` to updatePositions
+- Changed the left property to translateX
+- Reduced the size of the animation pizza to small `pizza_small.png`
+- Added translate3d property to moving pizza elements to force 3d acceleration
+- Replaced `querySelector*` with getElementBy*``
