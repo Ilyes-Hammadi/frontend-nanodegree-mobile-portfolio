@@ -508,9 +508,7 @@ function updatePositions() {
   var scrollTop = (document.body.scrollTop / 1250);
   
   // Null variable that will be used in the for loop
-  var phase = null;
-  var left = null;
-  var basicLeft = null;
+  var phase, left, basicLeft;
   
   items.forEach(function(elem, index, arr) {
     // Calculate the new phase
