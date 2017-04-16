@@ -1,3 +1,3 @@
-/*! frontend-nanodegree-mobile-portfolio 2017-04-13 */
+/*! frontend-nanodegree-mobile-portfolio 2017-04-16 */
 
 function logCRP(){var a=window.performance.timing,b=a.domContentLoadedEventStart-a.domLoading,c=a.domComplete-a.domLoading;document.getElementById("crp-stats").textContent="DCL: "+b+"ms, onload: "+c+"ms"}function addCss(a,b){if(console.log("Loading CSS..."),b)var c='<link href="'+a+'" rel="stylesheet" media="'+b+'">';else var c='<link href="'+a+'" rel="stylesheet">';console.log(c),document.querySelectorAll("head")[0].insertAdjacentHTML("beforeend",c)}window.addEventListener("load",function(a){logCRP(),addCss("css/style.css"),addCss("css/print.css","print")});
