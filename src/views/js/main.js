@@ -379,15 +379,16 @@ var makeRandomPizza = function () {
 	return pizza;
 };
 
-// returns a DOM element for each pizza
-var pizzaElementGenerator = function (i) {
-	var pizzaContainer, // contains pizza title, image and list of ingredients
+
+var pizzaContainer, // contains pizza title, image and list of ingredients
 		pizzaImageContainer, // contains the pizza image
 		pizzaImage, // the pizza image itself
 		pizzaDescriptionContainer, // contains the pizza title and list of ingredients
 		pizzaName, // the pizza name itself
 		ul; // the list of ingredients
 
+// returns a DOM element for each pizza
+var pizzaElementGenerator = function (i) {
 	pizzaContainer = document.createElement("div");
 	pizzaImageContainer = document.createElement("div");
 	pizzaImage = document.createElement("img");
@@ -475,8 +476,8 @@ var resizePizzas = function (size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-	var pizzasDiv = document.getElementById("randomPizzas");
 	pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -544,14 +545,15 @@ document.addEventListener('DOMContentLoaded', function () {
 	var s = 256;
 
 	// Generate pizzas based on available screen width and height
-	var cols = screen.width / 300;
-	var rows = screen.height / 300;
-	var pizzaCount = Math.ceil(cols * rows);
+	var cols = 8;
+	var rows = screen.height / s;
+	var pizzaCount = Math.ceil((cols + 1) * rows);
 
 	var movingPizzas = document.getElementById("movingPizzas1");
+	var elem;
 
 	for (var i = 0; i < pizzaCount; i++) {
-		var elem = document.createElement('img');
+		elem = document.createElement('img');
 		elem.className = 'mover';
 		elem.src = "images/pizza_small.png";
 		elem.style.height = '100px';
